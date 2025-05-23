@@ -1,0 +1,31 @@
+worker_processes auto;
+
+events {
+    worker_connections 1024; #Максомиальное колличество соединений при подключении к сайту
+}
+
+
+http {
+    
+    sendfile on;
+    server {
+        listen 81;
+        server_name localhost;
+        
+
+        location / {
+            fastcgi_pass 127.0.0.1:8080;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME "";
+            fastcgi_param PATH_INFO $fastcgi_script_name;
+        }
+      
+   
+       
+        location /status {
+            stub_status;
+            access_log off;
+            allow all;
+        }
+    }
+}

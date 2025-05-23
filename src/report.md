@@ -4,7 +4,9 @@
 ## Contents  
 1. [Part 1](#part-1-готовый-докер)  
 2. [Part 2](#part-2-операции-с-контейнером) 
-3. [Part 3](#part-3-мини-веб-сервер)
+3. [Part 3](#part-3-мини-веб-сервер)  
+4. [Part 4](#part-4-свой-докер)
+5. [Part 5](#part-5-dockle)
 
 ## Part 1. Готовый докер  
 * Первое, что нужно сделать - это установить сам NGINX на наш Ubuntu 20.04. Для этого используем команду ```sudo apt install nginx```  
@@ -121,6 +123,32 @@ sudo docker exec [container-name] nginx -t
 ![](pic/pic29.png)  
 
 *```sudo lsof -i :8080``` если нам говорят, что невозможно подлючится*  
-*```kill -9 <PID>```* 
+*```kill -9 <PID>```*  
 
-[Вернутьс в содержание](#contents) 
+* Командой ```mkdir -p ./nginx``` создаем папку ./nginx и кладём туда нашу конфигурацию. Получается ./nginx/nginx.conf и нах nginx видит нужный путь до конфига.  
+
+[Вернутьс в содержание](#contents)  
+
+
+## Part 4. Свой докер  
+
+* Создаём свой Dockerfile и вписываем туда нужные команды  
+![](pic/pic31.png)
+
+
+* В файл power.sh прописываем команды сбора образа ```docker build . -t app:test``` и его запуска с 81 на 80 порт командой ```docker run -d -p 80:81 app:test```
+![](pic/pic30.png)
+
+* По localhost:80 страничка отдаётся  
+![](pic/pic32.png)  
+
+* localhost:80/status отдаётся stub-статус  
+![](pic/pic33.png)  
+
+[Вернутьс в содержание](#contents)  
+
+## Part 5. Dockle  
+
+
+
+[Вернутьс в содержание](#contents)  
